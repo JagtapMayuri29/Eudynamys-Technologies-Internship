@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register Form</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="login-container">
+            <h2>Registration Form</h2>
+            <form action="" method="POST" onreset="resetErrors">
+                <div class="txt_field">
+                    <label for="Name">Name</label>  
+                    <input type="text" id="name" name="Name" placeholder="Enter your Name" required>
+                    <span id="name-error" class="error-message"></span>    
+                </div>
+                <div class="txt_field">
+                    <label for="Mobile Number">Mobile Number</label>
+                    <input type="text" id="mobno" name="Mobile Number" placeholder="Enter Mobile number" required>
+                </div>
+                <div class="txt_field">
+                    <label for="Email Id">Mobile Number</label>
+                    <input type="text" id="emailid" name="Email Id" placeholder="Enter your Email Id" required>
+                </div>
+                <div class="txt_field">
+                    <label for="Password">Password</label>
+                    <input type="text" id="pass" name="Password" placeholder="Enter your Password" required>
+                </div>
+                <div class="txt_field">
+                    <label for="Confirm Password">Password</label>
+                    <input type="text" id="cpass" name="Confirm Password" placeholder="Confirm your Password" required>
+                </div>
+                <button type="submit" class="login-btn">Register</button>
+            </form>
+
+        </div>
+    </body>
+    <script>
+        function validateform()
+        {
+            const name = document.getElementById("name").value;
+
+            const nameErr = document.getElementById("name-error");
+
+            nameErr.textContent = "";
+
+            let isValid = true;
+            if (name === "" || /\d/.test(name)) 
+            {
+                nameErr.textContent = "Please enter your name properly.";
+                isValid = false;
+            }    
+        }
+        function resetErrors() 
+        {
+            document.getElementById("name-error").textContent = "";
+        }
+    </script>
+
+</html>
