@@ -4,26 +4,33 @@
     box-sizing: border-box;
     font-family: sans-serif;
   }
-  
-  .top-bar {
+
+  .main-bar {
+    background-color: #e3e8ec;
+    color: white;
     display: flex;
-    justify-content: space-between; 
-    align-items: center;            
-    background-color: #333;         
-    padding: 30px 80px;
-    position: fixed;               
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;                
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10%;
   }
-  
   .logo {
-    color: #ffffff;
-    font-size: 24px;
-    font-weight: bold;
+  color: #791be4;
+  font-size: 15px;
   }
-  
+  .phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Spaces the symbol away from the numbers */
+
+ }
+  .top-bar {
+    background-color: #2c3e50;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10%;
+} 
   .nav-links {
     display: flex;
     list-style: none;              
@@ -41,4 +48,26 @@
   .nav-links a:hover {
     color: rgb(124, 5, 235);
   }
+  .heading{
+    color: #791be4;
+    font-size: 50px;
+    font-weight: bold;
+    padding: 20px 42px;
+  }
+
+  .main-link a {
+    color: #810cb8;
+    text-decoration: none;         
+    font-size: 25px;
+    font-weight: bold;
+    padding: 42px;
+    
+  }
+  .main-link {
+    display: flex;
+    list-style: none;              
+    gap: 10px;    
+                
+  }
+  
   
