@@ -1,10 +1,15 @@
-* {
+* 
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
   }
-
+  body {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, #f9fbfc 23%, #e5b7f7 95%);
+  }
   .main-bar {
     background-color: #e3e8ec;
     color: white;
@@ -48,26 +53,83 @@
   .nav-links a:hover {
     color: rgb(124, 5, 235);
   }
-  .heading{
-    color: #791be4;
-    font-size: 50px;
-    font-weight: bold;
-    padding: 20px 42px;
+
+  .hero-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 85vh;
+    padding: 10 25px;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
-  .main-link a {
-    color: #810cb8;
-    text-decoration: none;         
-    font-size: 25px;
+  .heading{
+    color: #4c0668;
+    font-size: 60px;
     font-weight: bold;
-    padding: 42px;
-    
+    padding: 10px 22px;
+    margin-bottom: 20px;
   }
-  .main-link {
+
+  .hero p {
+    margin-bottom: 30px;
+    color: #910389;
+    font-weight: bold;
+    font-size:1.5rem;
+  }          
+  .hero-link {
     display: flex;
     list-style: none;              
-    gap: 10px;    
-                
+    gap: 30px;                    
+  }
+  .hero-links a {
+    color: #1a0236;
+    text-decoration: none;         
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px 12px;
+    transition: 0.3s ease;  
+  }
+  .hero-section .buttons a {
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    transition: 0.2s ease;
+    display: inline-block;
+    margin-top: 30px;
+  }
+  .buttons .Contact {
+    background-color: #22043a;
+  }
+  .hero-section .buttons a:hover {
+    background-color: #47b2e4;
   }
   
+  /*Info section*/
+  .info-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 85vh;
+    padding: 10 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+   }
+  .info-heading{
+    color: #4c0668;
+    font-size: 40px;
+    font-weight: bold;
+    padding: 15px 40px;
+    margin-top: 5px;
+
+  }
+  .info p{
+    margin-bottom: 20px;
+    color: #0e060d;
+    font-size:1.0rem;
+    padding: 15px 40px;
+  }   
   
