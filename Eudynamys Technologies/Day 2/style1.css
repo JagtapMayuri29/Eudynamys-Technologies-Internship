@@ -155,3 +155,10 @@
     font-size:0.6rem;
     padding: 10px 5px;
   }
+  .technology{
+    padding: 80px;
+    justify-content: space-evenly;
+  }
+  .tech_image{
+    flex-direction: column;
+  }
