@@ -155,10 +155,25 @@
     font-size:0.6rem;
     padding: 10px 5px;
   }
-  .technology{
+  .technology-section{
     padding: 80px;
-    justify-content: space-evenly;
   }
-  .tech_image{
-    flex-direction: column;
+  .technology-area{
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: darkgrey;
+    border-radius: 8px;
+    padding: 30px ;
+  }
+  .technology-image{
+    flex-direction:column;
+    gap: 20px;
+    max-width: 20%;
+    padding: 5px 30px;
+    margin-top: 80px;
+    
+  }
+  .d-flex{
+    display: flex;
+    justify-content:center;
   }
