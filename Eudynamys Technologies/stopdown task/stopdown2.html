@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background:#eef2f7;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(105, 104, 104);
+    color: white;
+    
+}
+.container1{
+    text-align: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.count{
+    font-size: 50px;
+    font-weight: bold;
+}
+.inputs-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.error{
+    color:red;
+    font-size:12px;
+    min-height:18px;
+    margin-top:5px;
+    text-align:center;
+
+}
+.inputs{ 
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+button{
+    margin-top:50px;
+    padding:12px 25px;
+    font-size:18px;
+    cursor:pointer;
+    border-radius:8px;
+    border:none;
+}
+button:hover{
+    background-color: #7adce9 ;
+
+}
+</style>    
+</head>
+<body>
+    <div class="container1">
+    <div class="container">
+        <div class="inputs-box">
+            <input type="text" class="inputs" id="hrs" placeholder="HH" min="0" max="12" oninput="validateHours()">
+            <p id="hrsError" style="color: red;"></p>
+        </div>
+        <div class="inputs-box">
+            <input type="text" class="inputs" id="min" placeholder="MM" min="0" max="60" oninput="validateMinutes()">
+            <p id="minError" style="color: red;"></p>
+        </div>
+        <div class="inputs-box">
+            <input type="text" class="inputs" id="sec" placeholder="SS" min="0" max="60" oninput="validateSeconds()">
+            <p id="secError" style="color: red;"></p>
+        </div>
+    </div>
+    <h1 class="count" id="Count">00:00:00</h1>
+    <h2 class="text" id="Text"></h2>
+    <button onclick="start()">Start</button>
+    <button onclick="restart()">Restart</button>
+    <button id="pausebtn" onclick="pauseResume()">Pause</button>
+    </div>
+<script>
+    let timer;
+    let num = 0;
+    let originalTime = 0;
+    let isPaused = false;
+
+function validateHours(){
+    let hrs = document.getElementById("hrs").value;
+
+    if(hrs > 12){
+        document.getElementById("hrsError").innerHTML = "Hours should be between 0 and 12";
+    }
+    else{
+        document.getElementById("hrsError").innerHTML = "";
+    }
+}
+
+function validateMinutes(){
+    let min = document.getElementById("min").value;
+
+    if(min > 59){
+        document.getElementById("minError").innerHTML = "Minutes should be between 0 and 59";
+    }
+    else{
+        document.getElementById("minError").innerHTML = "";
+    }
+}
+
+function validateSeconds(){
+    let sec = document.getElementById("sec").value;
+
+    if(sec > 59){
+        document.getElementById("secError").innerHTML = "Seconds should be between 0 and 59";
+    }
+    else{
+        document.getElementById("secError").innerHTML = "";
+    }
+}
+
+
+function start(){
+    clearInterval(timer);
+
+    if (num === 0) {
+
+    let hrs = Number(document.getElementById("hrs").value) || 0;
+    let min = Number(document.getElementById("min").value) || 0;
+    let sec = Number(document.getElementById("sec").value) || 0;
+
+
+    if(hrs<0 || hrs > 12){
+        alert("Hours should be between 0 and 12");
+        return;
+    }
+
+    if(min<0 || min > 59){
+        alert("Minutes should be between 0 and 59");
+        return;
+    }
+
+    if(sec<0 ||sec > 59){
+        alert("Seconds should be between 0 and 59");
+        return;
+    }
+   
+         num = hrs * 3600 + min * 60 + sec;
+         originalTime=num;
+        
+    }
+   
+    document.getElementById("Text").innerHTML = "";
+    timer = setInterval(function(){
+        let h =Math.floor(num/3600);
+        let m =Math.floor((num%3600)/60);
+        let s =num%60;
+      
+        document.getElementById("Count").innerHTML = 
+        String(h).padStart(2,"0")+":"+
+        String(m).padStart(2,"0")+":"+
+        String(s).padStart(2,"0");
+        num--;
+        if(num < 0){
+            clearInterval(timer);
+            num = 0;
+            isPaused = false;
+            document.getElementById("pauseBtn").innerHTML = "Pause";
+            document.getElementById("Count").innerHTML = "00:00:00";
+            document.getElementById("Text").innerHTML = "Times up";
+        }
+    },1000);
+
+}
+function pauseResume(){
+
+    if(!isPaused)
+    {
+        clearInterval(timer);
+        document.getElementById("pausebtn").innerHTML = "Resume";
+        isPaused = true;
+
+    }
+    else
+    {
+        document.getElementById("pausebtn").innerHTML = "Pause";
+        isPaused = false;
+        start();
+    }
+}
+function pause(){
+    clearInterval(timer);
+}
+function restart(){
+    clearInterval(timer);
+     num = originalTime;
+
+
+    let h = Math.floor(num / 3600);
+    let m = Math.floor((num % 3600) / 60);
+    let s = num % 60;
+
+    document.getElementById("Count").innerHTML =
+        String(h).padStart(2,"0") + ":" +
+        String(m).padStart(2,"0") + ":" +
+        String(s).padStart(2,"0");
+
+    document.getElementById("Text").innerHTML = "";
+    start();
+}
+
+   /* document.getElementById("hrs").value = "";
+    document.getElementById("min").value = "";
+    document.getElementById("sec").value = "";
+
+    document.getElementById("hrsError").innerHTML = "";
+    document.getElementById("minError").innerHTML = "";
+    document.getElementById("secError").innerHTML = "";
+
+    document.getElementById("Count").innerHTML = "00:00:00";
+    document.getElementById("Text").innerHTML = "";*/
+</script>    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<title>Calculator Task</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cal.css">
+</head>
+<body>
+    <div class="Calc">
+        <div class="calculator">
+            <div class="cal_flex">
+                <input class="inputf" id="res" type="text"placeholder="0" onkeyup="Store">
+                <button id="clr" onclick="Clear()">C</button>
+            </div>
+
+            <div>
+                <button id="1" onclick="setvalue('1')">1</button>
+                <button id="2"onclick="setvalue('2')">2</button>
+                <button id="3" onclick="setvalue('3')">3</button>
+                <button id="/" onclick="setvalue('/')">/</button>
+            </div>
+
+            <div>
+                <button id="4" onclick="setvalue('4')">4</button>
+                <button id="5" onclick="setvalue('5')">5</button>
+                <button id="6" onclick="setvalue('6')">6</button>
+                <button id="*" onclick="setvalue('*')">*</button>
+            </div>
+
+
+            <div>
+                <button id="7" onclick="setvalue('7')">7</button>
+                <button id="8" onclick="setvalue('8')">8</button>
+                <button id="9" onclick="setvalue('9')">9</button>
+                <button id="-" onclick="setvalue('-')">-</button>
+            </div>
+
+            <div>
+                <button id="0" onclick="setvalue('0')">0</button>
+                <button id="." onclick="setvalue('.')">.</button>
+                <button id="=" onclick="Result()">=</button>
+                <button id="+" onclick="setvalue('+')">+</button>
+            </div>
+        </div>
+    </div>
+
+
+<script src="cal.js">
+
+</script>
+</body>
+</html>

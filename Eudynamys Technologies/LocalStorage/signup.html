@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    *{
+        margin: 0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Inter',sans-serif;
+    }
+    body{
+        width:100%;
+        height:100vh;
+        background-color:#fff;  
+    }
+    .heading{
+        text-align:center;
+        padding: 10px 20px;
+        color:blueviolet;
+    }
+    .container{
+        width: 1050px;
+        margin:auto;
+        border:1px solid #ccc;
+        border-radius:10px;
+        overflow:hidden;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+        margin-bottom: 30px;
+    }
+    .navbar{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        text-align:right;
+        padding:15px;
+        font-size:18px;
+        color:#fff;
+        background-color:#11112d;
+    }
+    .nav_right{
+        display:flex;
+        align-items:center;
+        gap: 15px;
+    }
+    .nav_right button{
+        padding:8px 15px;
+        border-radius:5px;
+        border:none;
+        background-color:blueviolet;
+        color:#fff;
+        font-size: 18px;
+        font-weight:600;
+        cursor: pointer;
+
+    }
+    .main_section{
+        display: flex;
+        justify-content: center;
+        align-items:flex-start;
+    }
+    .left_content{
+        width: 50%;
+    }
+    .right_content{
+        width: 50%;
+        padding: 40px;
+    }
+    .left_content img{
+        width:100%;
+        height:110vh;
+        
+    }
+    .right_content h1{
+        margin-bottom: 15px;
+    }
+    .right_content p{
+        color:darkgray;
+        margin-bottom: 30px;
+    }
+    .name_view{
+        display: flex;
+        gap: 2px;
+        margin-bottom: 5px;
+    }
+    input[type="text"],[type="email"]{
+        width: 100%;
+        padding: 12px 25px;
+        margin-bottom: 15px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline:none;
+        transition: border-color 0.3s ease;
+    }
+    input[type="password"]{
+        width: 100%;
+        padding: 12px 25px;
+        margin-bottom: 15px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+    input:focus{
+    border-color:blueviolet;
+    }
+    .btnreg{
+        width: 100%;
+        padding: 12px 25px;
+        margin-bottom: 13px;
+        font-size: 18px;
+        color: #fff;
+        border-radius: 5px;
+        outline: none;
+        background-color: blueviolet;
+        margin-top: 20px;
+    }
+    .para{
+        color:darkgray;
+        margin-bottom: 30px;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .para a{
+        text-decoration: none;
+        color: blueviolet;
+        font-weight:bold;
+        margin-left: 10px;
+    }
+    span{
+        color: red;
+        font-size: 13px;
+        display: block;
+        margin-bottom: 10px;
+    }
+    </style>    
+</head>
+<body>
+    <div class="heading">
+        <h2>SIGN UP SCREEN</h2>
+    </div>
+    <div class="container">
+        <div class="navbar">
+            <h3>AuthApp</h3>
+            <div class="nav_right">Already have an account?<button href="login.html">Login</button></div>
+        </div>
+        <div class="main_section">
+            <div class="left_content">
+                <img src="IMG-20260807-WA0011.jpg" alt="signup">
+            </div>
+            <div class="right_content">
+                <div class="h1">
+                    <h1>Create Your Account</h1>
+                </div>
+                <div>
+                    <p>Fill in the details below to get Started.</p> 
+                </div>
+                <div class="name_view">
+                <div>
+                <input type="text" id="fname" placeholder="First Name" onkeyup="validatefname()">
+                <span id="namefError"></span> 
+                </div>
+                <div>
+                <input type="text" id="lname" placeholder="Last Name" onkeyup="validatelname()">
+                <span id="namelError"></span> 
+                </div>
+                </div>
+                <input type="email" id="email" placeholder="Email Address" onkeyup="validateemail()">
+                <span id="emailError"></span> 
+                <input type="text" id="mobile" placeholder="Mobile Number" onkeyup="validatemobile()">
+                <span id="mobileError"></span> 
+                <input type="password" id="password" placeholder="Password" onkeyup="validatepass()">
+                <span id="passError"></span> 
+                <input type="password" id="cpass" placeholder="Confirm Password" onkeyup="validatecpass()">
+                <span id="cpassError"></span> 
+                <button type="button" onclick="signup()" class="btnreg">Create Account</button>
+                <div class="para">
+                    Already Have Account?<a href="login.html">Login</a> 
+                </div>  
+            </div>
+        </div>
+    </div>
+<script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+<link rel="stylesheet" href="style3.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body> 
+    <div class="heading"> 
+    <h2>Profile Management tool</h2>
+    </div>  
+    <div class="container">
+        <div class="left_panel">
+             <div class="heading2">
+                <h2>Profile Form</h2>
+            </div>
+             <h3>Create Your Profile</h3>
+            <div class="form">
+             <div class="cont_txt">
+                <label>Full Name</label>
+                <input type="text" id="name" oninput="validateName()">
+                <span id="nameError" style="color:red;"></span>
+            </div>
+            <div class="cont_txt">
+                <label>Job Title</label>
+                <input type="text" id="job" oninput="validateJob()">
+                <span id="JobError" style="color:red;"></span>
+            </div>
+            <div class="cont_txt">
+                <label>Short Bio</label>
+                <textarea id="bio" name="bio"></textarea>
+                <div>
+                <span id="BioError" style="color:red;"></span>
+                </div>
+            </div>
+            <div class="cont_txt">
+                <label>Skills</label> 
+            </div>
+                <div class="skills">
+                    <label>
+                        <input type="checkbox" id="html" value="HTML">
+                        HTML
+                    </label>
+                    <label>
+                        <input type="checkbox" id="css" value="CSS">
+                        CSS
+                    </label>
+                    <label>
+                        <input type="checkbox" id="javascript" value="JAVASCRIPT">
+                        Javascript
+                    </label>
+                     <label>
+                        <input type="checkbox" id="react" value="REACT">
+                        React
+                    </label>
+                     <label>
+                        <input type="checkbox" id="uiux" value="UI/UX" onchange="">
+                        UI/UX
+                    </label>
+                </div>
+                <span id="SkillError" style="color:red;"></span>
+            <div class="cont_txt">
+                <label>Gender</label>
+            </div>
+            <div class="skills">
+                <label>
+                    <input type="radio" name="gender" value="male">
+                    Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="Female">
+                    Female
+                </label>
+                <label>
+                    <input type="radio" name="gender"  value="other">
+                    Other
+                </label>
+            </div>
+            <div class="cont_txt">
+                <label>Upload Photo</label>
+            </div>
+            <input type="file" id="photo" value="file">
+            </div>
+        </div>
+        <div class="right_panel">
+            <div class="preview-heading">
+                <h2>Profile Preview</h2>
+            </div>
+            <div class="card">
+            <div class="top">
+                <img id="previewImage">
+                <div>
+                    <h2 id="previewName">Your Name</h2>
+                    <h4 id="previewJob">Job Title</h4>
+                </div>
+            </div>
+            <hr>
+            <h3>About Me</h3>
+            <p id="previewBio">Bio will appear here...</p>
+            <hr>
+            <h3>Skills</h3>
+            <div id="previewSkills"></div>
+            <hr>
+            <h3>Gender</h3>
+            <p id="previewGender">Not Selected</p>
+        </div>
+        </div>
+    </div>
+    <script src="script4.js"></script>
+</body>
+</html>
