@@ -93,7 +93,12 @@ const User = () => {
     const [cityError, setCityError] = useState("");
     const [joinedDateError, setJoinedDateError] = useState("");
 
-    useEffect(() => { localStorage.setItem("users", JSON.stringify(userList)); }, [userList]);
+    const [currentpage, setCurrentpage] = useState(1);
+    const [sortOrder, setSortOrder] = useState({});
+
+    useEffect(() => {
+        localStorage.setItem("users", JSON.stringify(userList));
+    }, [userList]);
 
     const clearForm = () => {
         setName("");
@@ -112,100 +117,88 @@ const User = () => {
     };
 
     const validateName = (value) => {
-
         if (value.trim() === "") {
             setNameError("Name is required");
             return false;
         }
-
         if (value.trim().length < 3) {
             setNameError("Name should contain at least 3 characters");
             return false;
         }
-
         if (!/^[A-Za-z ]+$/.test(value.trim())) {
             setNameError("Name should contain only letters");
             return false;
         }
-
         setNameError("");
         return true;
     };
 
-
     const validateEmail = (value) => {
-
         if (value.trim() === "") {
             setEmailError("Email is required");
             return false;
         }
-
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim())) {
             setEmailError("Please enter a valid email address");
             return false;
         }
-
+        for (let i = 0; i < userList.length; i++) {
+            if (
+                userList[i].email.trim().toLowerCase() ===
+                value.trim().toLowerCase()
+            ) {
+                setEmailError("User already registered with this email");
+                return false;
+            }
+        }
         setEmailError("");
         return true;
     };
 
 
     const validateRole = (value) => {
-
         if (value === "") {
             setRoleError("Please select a role");
             return false;
         }
-
         setRoleError("");
         return true;
     };
 
 
     const validateCity = (value) => {
-
         if (value.trim() === "") {
             setCityError("City is required");
             return false;
         }
-
         if (!/^[A-Za-z ]+$/.test(value.trim())) {
             setCityError("City should contain only letters");
             return false;
         }
-
         setCityError("");
         return true;
     };
 
-
     const validateJoinedDate = (value) => {
-
         if (value === "") {
             setJoinedDateError("Joined date is required");
             return false;
         }
-
         const today = new Date().toISOString().split("T")[0];
-
         if (value > today) {
             setJoinedDateError("Joined date cannot be a future date");
             return false;
         }
-
         setJoinedDateError("");
         return true;
     };
 
-
     const validateForm = () => {
-
         const nameValid = validateName(name);
         const emailValid = validateEmail(email);
         const roleValid = validateRole(role);
         const cityValid = validateCity(city);
         const dateValid = validateJoinedDate(joinedDate);
-
         return (
             nameValid &&
             emailValid &&
@@ -219,8 +212,14 @@ const User = () => {
         if (!validateForm()) {
             return;
         }
+        for (let i = 0; i < userList.length; i++) {
+            if (userList[i].email.toLowerCase() === email.toLowerCase()) {
+                setEmailError("User already registered with this email");
+                return;
+            }
+        }
 
-        const newUser = {
+        let newuser = {
             id: userList.length + 1,
             name: name,
             email: email,
@@ -228,21 +227,15 @@ const User = () => {
             city: city,
             joinedDate: joinedDate,
             image: image || "/images/download.jpg"
-        }
-        setUserList([...userList, newUser]);
+        };
+        let newList = [...userList, newuser];
+        setUserList(newList);
+        localStorage.setItem("users", JSON.stringify(newList));
+        const newPage = Math.ceil(newList.length / userPerPage);
+        setCurrentpage(newPage);
+        alert("User added successfully!");
         setShowAdd(false);
-        setName("");
-        setEmail("");
-        setRole("");
-        setCity("");
-        setImage("");
-        setJoinedDate("");
-
-        setNameError("");
-        setEmailError("");
-        setRoleError("");
-        setCityError("");
-        setJoinedDateError("");
+        clearForm();
     }
     const viewUser = (user) => {
         setSelectedUser(user);
@@ -300,11 +293,70 @@ const User = () => {
             filteredRole === "" || user.role === filteredRole;
         return searchMatch && roleMatch;
     });
+
+    const totalUsers = userList.length;
+    const roleCounts = userList.reduce((counts, user) => {
+        counts[user.role] = (counts[user.role] || 0) + 1;
+        return counts;
+    }, {});
+
+    const formatDate = (date) => {
+        return new Date(date).toLocaleDateString("en-US", {
+            weekday: "long",
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+    };
     const deleteUser = () => {
-        let newList = userList.filter((item) => { return item.id !== selectedUser.id; });
+        let newList = userList.filter((item) => {
+            return item.id !== selectedUser.id;
+        });
+        newList = newList.map((user, index) => {
+            return {
+                ...user,
+                id: index + 1
+            };
+        });
         setUserList(newList);
         setShowDelete(false);
     };
+
+    const sortData = (column) => {
+        if (column === "id") {
+            setUserList([...userList].sort((a, b) => a.id - b.id));
+            return;
+        }
+        let order = sortOrder[column] === "asc" ? "desc" : "asc";
+        let sorted = [...filteredUsers];
+        sorted.sort((a, b) => {
+            let valueA = a[column];
+            let valueB = b[column];
+            if (column === "joinedDate") {
+                valueA = new Date(valueA);
+                valueB = new Date(valueB);
+            } else {
+                valueA = valueA.toLowerCase();
+                valueB = valueB.toLowerCase();
+            }
+            if (valueA < valueB) {
+                return order === "asc" ? -1 : 1;
+            }
+            if (valueA > valueB) {
+                return order === "asc" ? 1 : -1;
+            }
+            return 0;
+        });
+        setUserList(sorted);
+        setSortOrder({
+            ...sortOrder,
+            [column]: order
+        });
+    };
+    const userPerPage = 10;
+    const start = (currentpage - 1) * userPerPage;
+    const end = start + userPerPage;
+    const currentUsers = filteredUsers.slice(start, end);
 
     return (
         <div className='admin-container'>
@@ -339,25 +391,43 @@ const User = () => {
                             <select value={filteredRole} onChange={(e) => setFilteredRole(e.target.value)}>
                                 <option value="">All Role</option>
                                 <option>Admin</option>
-                                <option>User</option>
+                                <option>Executive</option>
                                 <option>Manager</option>
                             </select>
+                                   <div className="user-stats">
+
+                            {/* All Users */}
+                            <div className="stat-card">
+                                <h3>All Users</h3>
+                                <h2>{totalUsers}</h2>
+                            </div>
+
+                            {/* Count of each role */}
+                            {Object.entries(roleCounts).map(([role, count]) => (
+                                <div className="stat-card" key={role}>
+                                    <h3>{role}</h3>
+                                    <h2>{count}</h2>
+                                </div>
+                            ))}
+
                         </div>
+                        </div>
+                 
                         <div className='table-container'>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
+                                        <th onClick={() => sortData("id")}>ID ↕</th>
+                                        <th onClick={() => sortData("name")}>Name ↕</th>
                                         <th>Email</th>
-                                        <th>Role</th>
+                                        <th onClick={() => sortData("role")}>Role ↕</th>
                                         <th>City</th>
-                                        <th>Joined Date</th>
+                                        <th onClick={() => sortData("joinedDate")}>Joined Date ↕</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredUsers.map((user) => (
+                                    {currentUsers.map((user) => (
                                         <tr key={user.id}>
                                             <td>{user.id}</td>
                                             <td>
@@ -372,7 +442,7 @@ const User = () => {
                                             <td>{user.email}</td>
                                             <td>{user.role}</td>
                                             <td>{user.city}</td>
-                                            <td>{user.joinedDate}</td>
+                                            <td>{formatDate(user.joinedDate)}</td>
                                             <td>
                                                 <div className='actions'>
                                                     <button className='view-btn' onClick={() => viewUser(user)}><i className="fa-solid fa-eye"></i></button>
@@ -388,7 +458,23 @@ const User = () => {
                                     ))}
                                 </tbody>
                             </table>
+                            <div className="pagination">
+                                <span>Page {currentpage}</span>
+                                {currentpage > 1 && (
+                                    <button onClick={() => setCurrentpage(currentpage - 1)}>
+                                        Previous
+                                    </button>
+                                )}
+
+                                {end < filteredUsers.length && (
+                                    <button onClick={() => setCurrentpage(currentpage + 1)}>
+                                        Next
+                                    </button>
+                                )}
+
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -413,7 +499,7 @@ const User = () => {
                             <label>Role<span className="required">*</span></label>
                             <select value={role} onChange={(e) => { setRole(e.target.value); validateRole(e.target.value); }} placeholder="Select Role">
                                 <option value="">Select Role</option>
-                                <option value="User">User</option>
+                                <option value="Executive">Executive</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Manager">Manager</option>
                             </select>
@@ -478,7 +564,7 @@ const User = () => {
                         <div className="form-group">
                             <label>Role</label>
                             <select value={role} onChange={(e) => setRole(e.target.value)}>
-                                <option value="User">User</option>
+                                <option value="Executive">Executive</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Manager">Manager</option>
                             </select>

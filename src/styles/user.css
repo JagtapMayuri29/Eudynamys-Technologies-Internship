@@ -53,7 +53,7 @@ body{
   border-radius: 5px;
 }
 
-.main {
+.main{
   flex: 1;
 }
 .topbar{
@@ -76,20 +76,20 @@ body{
   padding: 30px;
   background-color: #faf7f7;
 }
-.header {
+.header{
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header h1 {
+.header h1{
   font-size: 25px;
 }
-.header p {
+.header p{
   color: #777;
   font-size: 13px;
   margin-top: 5px;
 }
-.add-user {
+.add-user{
   background:#8510b3;
   color: white;
   border: none;
@@ -97,7 +97,7 @@ body{
   border-radius: 5px;
   cursor: pointer;
 }
-.add-user:hover {
+.add-user:hover{
   background: #e38eee;
 }
 .filter{
@@ -109,20 +109,20 @@ body{
   align-items: center;
   border-radius: 6px;
 }
-.filter input {
+.filter input{
   width: 280px;
   padding: 10px 15px;
   border: 1px solid #c409ba;
   border-radius: 5px;
   outline:none;
 }
-.filter-content select {
+.filter-content select{
   padding: 10px;
   border: 1px solid #c409ba;
   border-radius: 5px;
   outline: none;
 }
-.filter-content span {
+.filter-content span{
   margin-left: auto;
   font-size: 13px;
 }
@@ -147,34 +147,45 @@ th{
   text-align: left;
   padding: 15px 10px;
 }
-td {
+td{
   padding: 12px 10px;
   border-bottom: 1px solid #eee;
   font-size: 12px;
 }
+td .name-box{
+  text-align: left;
+}
 tr:hover {
   background-color: #fafafa;
 }
-.user-image {
-  width: 40px;
-  height: 40px;
+.user-image{
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
+  margin: 0;
+  flex-shrink: 0;
 }
-.name-box {
+.name-box{
   display: flex;
   align-items: center;
-  gap: 2px;
-  padding-left: 5px !important;
-  padding-right: 5px !important;
+  justify-content: flex-start;
+  gap: 5px;
+  width: max-content;
 }
-
-.actions {
+.name-box span{
+  display: inline-block;
+  margin: 0;
+  padding: 0 15px;
+  text-align: left;
+  white-space: nowrap;
+}
+.actions{
   display: flex;
   gap: 5px;
 }
-
-.actions button {
+.actions button{
   width: 26px;
   height: 26px;
   border: none;
@@ -185,25 +196,25 @@ tr:hover {
   align-items: center;
 }
 
-.actions i {
+.actions i{
   font-size: 10px;
 }
 
-.view-btn {
+.view-btn{
   background: #eff6ff;
   color: #2563eb;
 }
 
-.edit-btn {
+.edit-btn{
   background: #c7f7d7;
   color: rgb(6, 158, 6);
 }
 
-.delete-btn {
+.delete-btn{
   background: #fef2f2;
   color: #ef4444;
 }
-.popup-overlay {
+.popup-overlay{
   position: fixed;
   top: 0;
   left: 0;
@@ -215,7 +226,7 @@ tr:hover {
   align-items: center;
   z-index: 1000;
 }
-.popup-box {
+.popup-box{
   width: 500px;
   background: white;
   padding: 25px;
@@ -387,7 +398,53 @@ tr:hover {
   color: red;
   margin-left: 3px;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
 
+.pagination button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background:#2563eb;
+  color:white
+}
+
+.pagination span {
+  font-weight: bold;
+}
+th{
+  cursor: pointer;
+}
+.user-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stat-card {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 120px;
+}
+.stat-card h3 {
+    color:black;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat-card h2 {
+    color: #333;
+    font-size: 14px;
+    margin: 0;
+}
 
 
 
