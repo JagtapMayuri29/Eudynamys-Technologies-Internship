@@ -328,7 +328,7 @@ const User = () => {
             return;
         }
         let order = sortOrder[column] === "asc" ? "desc" : "asc";
-        let sorted = [...filteredUsers];
+        let sorted = [...userList];
         sorted.sort((a, b) => {
             let valueA = a[column];
             let valueB = b[column];
@@ -342,6 +342,7 @@ const User = () => {
             if (valueA < valueB) {
                 return order === "asc" ? -1 : 1;
             }
+            
             if (valueA > valueB) {
                 return order === "asc" ? 1 : -1;
             }
