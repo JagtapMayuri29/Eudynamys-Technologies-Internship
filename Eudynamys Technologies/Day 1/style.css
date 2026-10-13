@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Center the container on the screen */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f7f6;
+}
+
+/* Form container styling */
+.login-container {
+    background-color: #ffe6e6;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-container h2 {
+    margin-bottom: 24px;
+    text-align: center;
+    color: #333333;
+}
+
+/* Input field groups */
+.txt_field {
+    margin-bottom: 20px;
+}
+
+.txt_field label {
+    display: block;
+    margin-bottom: 8px;
+    color: #666666;
+    font-size: 14px;
+}
+
+.txt_field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.txt_field input:focus {
+    border-color: #007acc;
+}
+
+/* Button styling */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005999;
+}
+
+/* Footer links */
+.form-footer {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.form-footer a {
+    color: #007acc;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

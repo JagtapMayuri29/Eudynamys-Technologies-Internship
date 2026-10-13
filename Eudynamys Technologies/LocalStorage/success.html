@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Success</title>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body{
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+    }
+    .success-box {
+        width: 400px;
+        padding: 40px;
+        text-align: center;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+    }
+
+    .icon{
+        font-size: 60px;
+        color: rgb(28, 114, 28);
+        margin-bottom: 20px;
+        border: 2px solid lightgreen;
+        background-color: palegreen;
+        border-radius: 50%;
+        width: 80px;
+        margin-left:40%;
+    }
+
+    h2{
+        margin-bottom: 10px;
+    }
+
+    p{
+        color: gray;
+        margin-bottom: 40px;
+    }
+
+    button{
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        background-color: blueviolet;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="success-box">
+        <div class="icon">✓</div>
+        <h2>Success</h2>
+        <p>Your profile has been updated successfully....</p>
+        <button onclick="goProfile()">Go Back to Profile</button>
+    </div>
+    <script>
+    function goProfile() {
+        window.location.href = "profile_page.html";
+    }
+    </script>
+</body>
+</html>
